@@ -32,6 +32,8 @@ RUN set -ex && \
 # Set work directory
 WORKDIR /usr/src/node-red
 
+RUN apk add ffmpeg
+
 # Setup SSH known_hosts file
 COPY .docker/known_hosts.sh .
 RUN ./known_hosts.sh /etc/ssh/ssh_known_hosts && rm /usr/src/node-red/known_hosts.sh
@@ -50,6 +52,8 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
     npm install --unsafe-perm --no-update-notifier --no-audit --no-fund --only=production && \
     /tmp/remove_native_gpio.sh && \
     cp -R node_modules prod_node_modules
+
+#RUN apk add ffmpeg
 
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
