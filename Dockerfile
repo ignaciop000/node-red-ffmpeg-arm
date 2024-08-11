@@ -8,6 +8,7 @@ ARG QEMU_ARCH
 # Copy scripts
 COPY .docker/scripts/*.sh /tmp/
 RUN chmod +x /tmp/remove_native_gpio.sh
+RUN chmod +x /tmp/install_devtools.sh
 COPY .docker/healthcheck.js /
 
 # Install tools, create Node-RED app and data dir, add user and set rights
