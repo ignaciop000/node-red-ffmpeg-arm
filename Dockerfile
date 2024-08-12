@@ -44,6 +44,7 @@ RUN echo "PubkeyAcceptedKeyTypes +ssh-rsa" >> /etc/ssh/ssh_config
 COPY package.json .
 COPY flows.json /data
 COPY .docker/scripts/entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
 
 #### Stage BUILD #######################################################################################################
 FROM base AS build
