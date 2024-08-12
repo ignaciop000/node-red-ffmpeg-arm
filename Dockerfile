@@ -58,6 +58,8 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
 RUN apk update && apk upgrade && \
     apk add --no-cache ffmpeg
 
+RUN ffmpeg --version
+
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
 ARG BUILD_DATE
