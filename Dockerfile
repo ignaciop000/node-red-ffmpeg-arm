@@ -46,6 +46,9 @@ COPY flows.json /data
 COPY .docker/scripts/entrypoint.sh .
 RUN chmod +x ./entrypoint.sh
 
+RUN apk update && apk upgrade && \
+    apk add --no-cache ffmpeg
+
 #### Stage BUILD #######################################################################################################
 FROM base AS build
 
@@ -54,11 +57,6 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
     npm install --unsafe-perm --no-update-notifier --no-audit --no-fund --only=production && \
     /tmp/remove_native_gpio.sh && \
     cp -R node_modules prod_node_modules
-
-RUN apk update && apk upgrade && \
-    apk add --no-cache ffmpeg
-
-RUN ffmpeg --version
 
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
