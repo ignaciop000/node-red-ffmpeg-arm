@@ -55,7 +55,8 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
     /tmp/remove_native_gpio.sh && \
     cp -R node_modules prod_node_modules
 
-RUN apk add ffmpeg
+RUN apk update && apk upgrade && \
+    apk add --no-cache ffmpeg
 
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
